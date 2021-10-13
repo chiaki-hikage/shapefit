@@ -1,0 +1,53 @@
+Running the profile fitting code
+----------------------------------
+
+This code is simulating a galaxy image as an oval shape 
+with Sersic profile (psf and noise can be added as options)
+and then fitting it using the basis functions consisting of 
+two incomplete Bessel functions
+
+The file "ellipfit.tar.gz" contains the following files
+
+  README
+  Makefile
+  main.cpp
+  main.h
+  ellipticity.h
+  besselfit.h
+  img.h
+  psf.h
+  ran2.h
+  normsinv.h
+  fftlog.f
+
+To compile the code, fftw library is necessary.
+
+ * "make" to obtain the program "ellipfit"
+
+ * "make test" do the test calculation,
+    which generate an image with eps=0.3, phi=30 deg with sersic index=1
+    and obtain the fitted ellipticity. You can compare input image and
+    fitted image by seeing the output file "img.dat".
+
+ * "make random"
+    which generate 100 images with random ellipticity to compare 
+    fitted ellipticity parameters (gamma1, gamma2) with input ones
+    by seeing the output file "fitval.dat"
+
+You can change the parameters using following options 
+
+    -l : side lengh   (default 1)					
+    -p : grid number of each side   (default 64)			
+    -n : number of realizations   (default 1)	
+    -I : brightness at r=r0   (default 1)	
+    -r : half light radius   (default 0.05)		
+    -i : sersic index   (default 1)	
+    -s : FWHM of PSF    (default 0.05)		
+    -b : S/N of image   (default 1000)		
+    -e : input value of ellipticity   (default 0.3)		
+    -f : input value of orientation angle [degree]  (default 30.)
+    -t : order of Taylor expansion [ntmax<=2]   (default 1)
+    -o : file of fit & input gamma's    (default fitval.dat)
+    -d : file of input image in binary    (default img_bin.dat)
+    -c : (option) file of fit & input images in ascii  (default img.dat) 
+    -a : if "y", give ellipticity random   (default n)
